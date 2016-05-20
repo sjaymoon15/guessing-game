@@ -5,12 +5,13 @@
 	var playersGuess,
 	    winningNumber,
 	    guessArray = [];
-
+	$("#input-here").focus();
 	winningNumber = generateWinningNumber();
 	console.log("win number " + winningNumber);
 	playersGuessSubmission();
-	
-	
+	provideHint();
+	playAgain();
+
 	/* **** Guessing Game Functions **** */
 
 	// Generate the Winning Number
@@ -24,12 +25,19 @@
 
 	function playersGuessSubmission(){
 		// add code here
+		$("#input-here").keydown(function(event){
+	    if(event.keyCode == 13){
+	      $("#submit-button").click();
+	    }
+  	}); 
 		$("#submit-button").on("click", function(){
 			playersGuess = parseInt($("#input-here").val());
 			$("#input-here").val("");
 			console.log("playersGuess " + playersGuess);
-
+		
+		
 			checkGuess();
+			endGame();
 		})
 	}
 
@@ -41,6 +49,8 @@
 			return "Your guess is higher ";
 		}else if(playersGuess < winningNumber){
 			return "Your guess is lower "; 
+		}else{
+			return "";
 		}
 	}
 
@@ -83,14 +93,33 @@
 
 	function provideHint(){
 		// add code here
+		$("#hint").on("click", function(){
+			var hintArr = [];
+			hintArr.push(Math.floor(Math.random() * (100 - 1 + 1)) + 1);
+			hintArr.push(Math.floor(Math.random() * (100 - 1 + 1)) + 1);
+			hintArr.push(winningNumber);
+			console.log(hintArr);
+			$("#hintContent").html("Hint "+ hintArr);
+		})
 	}
 
 	// Allow the "Player" to Play Again
 
 	function playAgain(){
 		// add code here
+		$("#startAgain").on("click", function(){
+      location.reload();
+    })
 	}
 
+	function endGame(){
+		var guessLeft = parseInt($("#guess-left").html());
+		if(guessLeft == 0){
+			$("#status").html("Please Play Again");
+			$("#message").hide();
+			$("hintContent").hide();
+		}
+	}
 
 	/* **** Event Listeners/Handlers ****  */
 
