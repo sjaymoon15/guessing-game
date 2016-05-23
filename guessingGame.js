@@ -1,7 +1,8 @@
 
 	/* **** Global Variables **** */
 	// try to elminate these global variables in your project, these are here just to start.
-
+	// Look into using an IIFE (Immediately Invoked Function Expression) to reduce the amount of global variables.
+	// Here is a great link to get started: http://benalman.com/news/2010/11/immediately-invoked-function-expression/
 	var playersGuess,
 	    winningNumber,
 	    guessArray = [];
