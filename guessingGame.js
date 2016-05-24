@@ -1,4 +1,4 @@
-
+$(document).ready(function(){
 	/* **** Global Variables **** */
 	// try to elminate these global variables in your project, these are here just to start.
 
@@ -122,5 +122,5 @@
 	}
 
 	/* **** Event Listeners/Handlers ****  */
-
+})
 
